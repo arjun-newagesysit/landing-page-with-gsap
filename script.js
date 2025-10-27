@@ -55,6 +55,35 @@ window.addEventListener("DOMContentLoaded", () => {
     })
   );
 
+  const circles = gsap.utils.toArray("svg circle");
+  gsap.set(circles, { scale: 0, transformOrigin: "center center" });
+
+  gsap.to(circles, {
+    scale: 1,
+    duration: 1.2,
+    ease: "back.out(1.7)",
+    stagger: 0.2,
+  });
+
+  const center = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  window.addEventListener("mousemove", (e) => {
+    const dx = (e.clientX - center.x) / center.x;
+    const dy = (e.clientY - center.y) / center.y;
+
+    circles.forEach((circle, i) => {
+      const depth = (i + 1) / circles.length;
+      const moveX = dx * 15 * (1 - depth);
+      const moveY = dy * 15 * (1 - depth);
+
+      gsap.to(circle, {
+        x: moveX,
+        y: moveY,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    });
+  });
+
   /**
    * Sliding text
    */
