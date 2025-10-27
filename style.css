@@ -12,6 +12,7 @@ a.estimate-btn::before {
   border-radius: inherit;
   padding: 1px;
   background: linear-gradient(180deg, #141b3b 50.68%, #d5dbff 104.11%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
@@ -73,6 +74,7 @@ article.testimonial-card::before {
   border-radius: inherit;
   padding: 1px;
   background: linear-gradient(0deg, #2c2c2c 0%, #71809e 44.71%, #242526 94.71%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
