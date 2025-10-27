@@ -1,3 +1,11 @@
+.hero-title,
+.sub-title,
+.estimate-btn,
+footer.hero-footer-border {
+  position: relative;
+  z-index: 10;
+}
+
 a.estimate-btn {
   cursor: pointer;
   text-decoration: none;
@@ -45,7 +53,7 @@ footer.hero-footer-border {
   );
   border-image-slice: 1;
   backdrop-filter: blur(40px);
-  background: rgba(0, 0, 0, 0.2);
+  background: #00000033;
 }
 
 h2.sliding-text {
