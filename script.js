@@ -91,4 +91,15 @@ window.addEventListener("DOMContentLoaded", () => {
   const debouncer = gsap.delayedCall(0.2, createSplit).pause();
 
   window.addEventListener("resize", () => debouncer.restart(true));
+
+  /**
+   * Testimonial section
+   */
+  gsap.from("h2.testimonial-title", {
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.5,
+    ease: "power3.out",
+  });
 });
