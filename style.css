@@ -1,3 +1,4 @@
+/* HERO */
 .hero-title,
 .sub-title,
 .estimate-btn,
@@ -56,6 +57,7 @@ footer.hero-footer-border {
   background: #00000033;
 }
 
+/* SLIDING_TEXT */
 h2.sliding-text {
   background: linear-gradient(90deg, #373737 0%, #999999 100%);
   -webkit-background-clip: text;
@@ -63,6 +65,12 @@ h2.sliding-text {
   background-clip: text;
 }
 
+.char {
+  opacity: 0.2;
+  transition: opacity 0.3s;
+}
+
+/* TESTIMONIALS */
 article.testimonial-card {
   position: relative;
   background: #101010;

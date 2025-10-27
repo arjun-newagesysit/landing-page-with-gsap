@@ -38,7 +38,6 @@ window.addEventListener("DOMContentLoaded", () => {
     ease: "power3.out",
   });
 
-  // CTA hover glow
   const btn = document.querySelector(".estimate-btn");
   btn.addEventListener("mouseenter", () =>
     gsap.to(btn, {
@@ -87,39 +86,50 @@ window.addEventListener("DOMContentLoaded", () => {
   /**
    * Sliding text
    */
-  gsap.registerPlugin(SplitText, ScrollTrigger);
-  let split, tl;
-  const createSplit = () => {
-    split && split.revert();
-    tl && tl.revert();
-    split = new SplitText(".sliding-text-container h2", {
-      type: "chars",
-    });
+  gsap.registerPlugin(ScrollTrigger);
 
-    tl = gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#textSection",
-          start: "top top",
-          end: "+=150%",
-          pin: true,
-          scrub: 0.75,
-          markers: true,
-        },
-      })
-      .set(
-        split.chars,
-        {
-          color: "#fff",
-          stagger: 0.1,
-        },
-        0.1
-      );
-  };
-  createSplit();
-  const debouncer = gsap.delayedCall(0.2, createSplit).pause();
+  const text = document.querySelector(".sliding-text");
+  const content = text.textContent.trim();
+  text.textContent = "";
 
-  window.addEventListener("resize", () => debouncer.restart(true));
+  content.split("").forEach((char) => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    span.classList.add("char");
+    text.appendChild(span);
+  });
+
+  gsap.to(".char", {
+    scrollTrigger: {
+      trigger: ".sliding-text-container",
+      start: "top 80%",
+      end: "bottom 60%",
+      scrub: true,
+    },
+    opacity: 1,
+    color: "#fff",
+    ease: "power2.out",
+    stagger: 0.02,
+    onUpdate: () => {
+      document.querySelectorAll(".char").forEach((span) => {
+        span.style.webkitTextFillColor = "#fff";
+      });
+    },
+  });
+
+  gsap.to(".char", {
+    scrollTrigger: {
+      trigger: ".sliding-text-container",
+      start: "top 80%",
+      end: "bottom 60%",
+      scrub: true,
+    },
+    opacity: 1,
+    y: -10,
+    color: "#fff",
+    ease: "power2.out",
+    stagger: 0.02,
+  });
 
   /**
    * Testimonial section
