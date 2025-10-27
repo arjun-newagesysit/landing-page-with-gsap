@@ -91,7 +91,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const text = document.querySelector(".sliding-text");
   const content = text.textContent.trim();
   text.textContent = "";
-
   content.split("").forEach((char) => {
     const span = document.createElement("span");
     span.textContent = char;
@@ -99,37 +98,40 @@ window.addEventListener("DOMContentLoaded", () => {
     text.appendChild(span);
   });
 
-  gsap.to(".char", {
+  const chars = document.querySelectorAll(".char");
+  const tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".sliding-text-container",
-      start: "top 80%",
+      start: "top 85%",
       end: "bottom 60%",
-      scrub: true,
-    },
-    opacity: 1,
-    color: "#fff",
-    ease: "power2.out",
-    stagger: 0.02,
-    onUpdate: () => {
-      document.querySelectorAll(".char").forEach((span) => {
-        span.style.webkitTextFillColor = "#fff";
-      });
+      scrub: 1.2,
     },
   });
 
-  gsap.to(".char", {
-    scrollTrigger: {
-      trigger: ".sliding-text-container",
-      start: "top 80%",
-      end: "bottom 60%",
-      scrub: true,
+  tl.fromTo(
+    chars,
+    {
+      opacity: 0.1,
+      y: 10,
+      filter: "blur(4px)",
     },
-    opacity: 1,
-    y: -10,
-    color: "#fff",
-    ease: "power2.out",
-    stagger: 0.02,
-  });
+    {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      color: "#ffffff",
+      ease: "power4.out",
+      stagger: {
+        each: 0.015,
+        from: "start",
+      },
+      onUpdate: () => {
+        chars.forEach((span) => {
+          span.style.webkitTextFillColor = "#fff";
+        });
+      },
+    }
+  );
 
   /**
    * Testimonial section
