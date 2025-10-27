@@ -1,0 +1,34 @@
+a.estimate-btn {
+  border: 1px solid;
+  border-image-source: linear-gradient(180deg, #141b3b 50.68%, #d5dbff 104.11%);
+}
+main.page-bg {
+  background: linear-gradient(180deg, #090d21 0%, #020205 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-text-muted {
+  background: linear-gradient(180deg, #989aa4 35.07%, #f5fafe 75.35%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+footer.hero-footer-border {
+  border-top: 1px solid;
+  border-image-source: linear-gradient(
+    90deg,
+    #090b1b 11.06%,
+    #a4b7ff 51.44%,
+    #0a0c1a 87.02%
+  );
+  backdrop-filter: blur(40px);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+h2.sliding-text {
+  background: linear-gradient(90deg, #373737 0%, #999999 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
