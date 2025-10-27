@@ -1,4 +1,41 @@
 window.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  if (ScrollSmoother.get()) ScrollSmoother.get().kill();
+  ScrollSmoother.create({
+    wrapper: "#smooth-wrapper",
+    content: "#smooth-content",
+    smooth: 1.5,
+    normalizeScroll: true,
+    ignoreMobileResize: true,
+    effects: true,
+    smoothTouch: 0.1,
+  });
+  setTimeout(() => ScrollTrigger.refresh(true), 300);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+  gsap.set(["#smooth-content", "#smooth-wrapper"], {
+    willChange: "transform",
+    force3D: true,
+  });
+
+  gsap.to(".hero-title", {
+    yPercent: -10,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".hero-title",
+      scrub: true,
+    },
+  });
+  gsap.to("svg.circles", {
+    yPercent: 10,
+    ease: "none",
+    scrollTrigger: {
+      trigger: "main.page-bg",
+      start: "top bottom",
+      end: "bottom top",
+      scrub: 0.8,
+    },
+  });
+
   /**
    * Hero animation
    */
@@ -140,8 +177,8 @@ window.addEventListener("DOMContentLoaded", () => {
   gsap.from("h2.testimonial-title", {
     y: 30,
     opacity: 0,
-    duration: 1,
-    delay: 0.5,
+    duration: 0.75,
+    delay: 1,
     ease: "power3.out",
     scrollTrigger: {
       trigger: "h2.testimonial-title",
@@ -157,8 +194,8 @@ window.addEventListener("DOMContentLoaded", () => {
       opacity: 0,
       duration: 1,
       ease: "power3.out",
-      stagger: 0.15,
-      delay: i * 0.2,
+      stagger: 0.25,
+      delay: i * 0.5,
       scrollTrigger: {
         trigger: col,
         start: "top 85%",
