@@ -119,6 +119,7 @@ article.testimonial-card p {
   background-clip: text;
   text-wrap: balance;
   z-index: 1;
+  transition: all 0.3s ease;
 }
 
 .inner-circle {

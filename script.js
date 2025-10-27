@@ -136,11 +136,65 @@ window.addEventListener("DOMContentLoaded", () => {
   /**
    * Testimonial section
    */
+  gsap.registerPlugin(ScrollTrigger);
   gsap.from("h2.testimonial-title", {
     y: 30,
     opacity: 0,
     duration: 1,
     delay: 0.5,
     ease: "power3.out",
+    scrollTrigger: {
+      trigger: "h2.testimonial-title",
+      start: "top 85%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray(".testimonial-grid > div").forEach((col, i) => {
+    gsap.from(col.querySelectorAll(".testimonial-card"), {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.15,
+      delay: i * 0.2,
+      scrollTrigger: {
+        trigger: col,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  });
+  document.querySelectorAll(".testimonial-card").forEach((card) => {
+    const hoverAnim = gsap.to(card, {
+      y: -5,
+      scale: 1.02,
+      boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
+      duration: 0.4,
+      ease: "power2.out",
+      paused: true,
+    });
+
+    const innerCircle = card.querySelector(".inner-circle");
+    const glowAnim = innerCircle
+      ? gsap.to(innerCircle, {
+          opacity: 0.7,
+          filter: "blur(30px)",
+          duration: 0.5,
+          ease: "power2.out",
+          paused: true,
+        })
+      : null;
+
+    card.addEventListener("mouseenter", () => {
+      hoverAnim.play();
+      glowAnim?.play();
+    });
+
+    card.addEventListener("mouseleave", () => {
+      hoverAnim.reverse();
+      glowAnim?.reverse();
+    });
   });
 });
